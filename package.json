@@ -1,0 +1,25 @@
+{
+  "name": "madrid-traffic-connector",
+  "version": "1.0.0",
+  "description": "Madrid traffic connector",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/GeographicaGS/madrid-traffic-connector.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/GeographicaGS/madrid-traffic-connector/issues"
+  },
+  "homepage": "https://github.com/GeographicaGS/madrid-traffic-connector#readme",
+  "dependencies": {
+    "cartodb": "^0.5.1",
+    "object-hash": "^1.2.0",
+    "request": "^2.83.0",
+    "xml2js": "^0.4.19"
+  }
+}
