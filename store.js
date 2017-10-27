@@ -20,7 +20,7 @@ module.exports.save = (data) => {
       .done(d => resolve())
       .error((error) => {
         console.error(error);
-        reject(new Error('Cannot save data into CARTO'));
+        reject(new Error(`Cannot save data into CARTO: ${error}`));
       });
   });
   return p;
