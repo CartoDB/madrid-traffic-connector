@@ -4,4 +4,4 @@ This connector load in [CARTO](https://carto.com)  traffic incidences provided b
 
 It's deployed using serverless. Thus, it could run in [AWS Lambda](https://aws.amazon.com/lambda).
 
-A really basic map visualization have been created in CARTO: https://geographica.carto.com/u/alasarr/builder/c4256311-f319-46bd-9242-34da34e87356. It's updated every 2 minutes.
+A really basic map visualization has been created in CARTO: https://geographica.carto.com/u/alasarr/builder/c4256311-f319-46bd-9242-34da34e87356. It's updated every 2 minutes.
