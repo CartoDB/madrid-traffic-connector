@@ -71,7 +71,7 @@ class Reader {
 
       case '4':
         return {
-          type: 'CONSTRUCTION',
+          type: 'MISC',
           subtype: 'LOW'
         };
     }

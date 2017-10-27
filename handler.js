@@ -6,7 +6,7 @@ module.exports.run = (event, context, callback) => {
   let r = new Reader();
   r.run().then( d => {
     const response = {
-      statusCode: 500,
+      statusCode: 200,
       body: JSON.stringify({
         message: 'Connector executed successfully!',
         input: event,
