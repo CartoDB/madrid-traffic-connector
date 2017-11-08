@@ -1,27 +1,21 @@
 var CartoDB = require('cartodb');
 var config = require('./config');
 
-function buildSQL(data) {
-  let q = [];
-  for (let d of data) {
-    q.push(`INSERT INTO ${config.CARTO.TABLE}
-              (id,the_geom,type,subtype,description,start,finish)
-            VALUES ('${d.id}',${d.the_geom},'${d.type}','${d.subtype}','${d.description}','${d.start}','${d.finish}')
-            ON CONFLICT DO NOTHING;`);
-  }
-  return q.join(' ');
-}
-
-module.exports.save = (data) => {
+module.exports.query = (q) => {
   let p = new Promise((resolve, reject) => {
-    let sql = new CartoDB.SQL({user: config.CARTO.USERNAME, api_key: config.CARTO.API_KEY});
-    let q = buildSQL(data);
+    let sql = new CartoDB.SQL({
+      user: config.CARTO.USERNAME,
+      api_key: config.CARTO.API_KEY,
+      sql_api_url: `https://${config.CARTO.USERNAME}.carto.com/api/v2/sql`
+    });
     sql.execute(q)
-      .done(d => resolve())
+      .done(d => {
+        resolve();
+      })
       .error((error) => {
         console.error(error);
         reject(new Error(`Cannot save data into CARTO: ${error}`));
       });
   });
   return p;
-}
+};

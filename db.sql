@@ -1,15 +1,23 @@
-CREATE TABLE madrid_traffic(
+CREATE TABLE madrid_traffic_incidences(
   id varchar(64) primary key,
   the_geom geometry(Point,4326),
   type varchar(16),
-  subtype varchar(16),
   description text,
   start timestamp,
   finish timestamp,
   created_at timestamp DEFAULT NOW()
 );
 
-create index madrid_traffic_geom_idx ON madrid_traffic USING GIST(the_geom);
+create index madrid_traffic_incidences_geom_idx ON madrid_traffic_incidences USING GIST(the_geom);
+
+CREATE TABLE madrid_traffic_servicelevels(
+  id serial,
+  the_geom geometry(LineString,4326),
+  status varchar(16),
+  created_at timestamp DEFAULT NOW()
+);
+
+create index madrid_traffic_servicelevels_geom_idx ON madrid_traffic_servicelevels USING GIST(the_geom);
 
 -- CREATE TABLE madrid_traffic(
 --   id varchar(64) ,

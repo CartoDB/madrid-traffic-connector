@@ -1,15 +1,13 @@
 'use strict';
-let Reader = require('./reader');
 
-module.exports.run = (event, context, callback) => {
-
-  let r = new Reader();
-  r.run().then( d => {
+function run (Obj, event, context, callback) {
+  let r = new Obj();
+  r.run().then(d => {
     const response = {
       statusCode: 200,
       body: JSON.stringify({
         message: 'Connector executed successfully!',
-        input: event,
+        input: event
       })
     };
     callback(null, response);
@@ -19,9 +17,17 @@ module.exports.run = (event, context, callback) => {
       statusCode: 500,
       body: JSON.stringify({
         message: `Something went wrong: ${err}`,
-        input: event,
+        input: event
       })
     };
     callback(err, response);
   });
+}
+
+module.exports.incidences = (event, context, callback) => {
+  run(require('incidences'), event, context, callback);
+};
+
+module.exports.servicelevel = (event, context, callback) => {
+  run(require('servicelevel'), event, context, callback);
 };
