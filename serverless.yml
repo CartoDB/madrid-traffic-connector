@@ -23,3 +23,12 @@ functions:
     events:
       - schedule: rate(5 minutes)
     timeout: 120
+
+  intensitypois:
+    handler: handler.intensitypois
+    environment:
+      CARTO_USERNAME: waze-traffic
+      CARTO_API_KEY: ${env:CARTO_API_KEY}
+    events:
+      - schedule: rate(5 minutes)
+    timeout: 120

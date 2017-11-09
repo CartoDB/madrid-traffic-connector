@@ -108,8 +108,7 @@ class ServiceLevel {
       q.push(`
           INSERT INTO ${config.SERVICE_LEVEL.TABLE}
                 (the_geom,status)
-              VALUES (${d.the_geom},'${d.status}')
-              ON CONFLICT DO NOTHING;
+              VALUES (${d.the_geom},'${d.status}');
         `);
     }
 

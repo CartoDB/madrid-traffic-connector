@@ -31,3 +31,7 @@ module.exports.incidences = (event, context, callback) => {
 module.exports.servicelevel = (event, context, callback) => {
   run(require('servicelevel'), event, context, callback);
 };
+
+module.exports.intensitypois = (event, context, callback) => {
+  run(require('intensitypois'), event, context, callback);
+};

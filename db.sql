@@ -19,6 +19,21 @@ CREATE TABLE madrid_traffic_servicelevels(
 
 create index madrid_traffic_servicelevels_geom_idx ON madrid_traffic_servicelevels USING GIST(the_geom);
 
+
+CREATE TABLE madrid_traffic_intensity_pois(
+  id serial,
+  code varchar(32),
+  intensity integer,
+  occupancy integer,
+  load integer,
+  service_level integer,
+  speed integer,
+  created_at timestamp DEFAULT NOW()
+);
+
+create index madrid_traffic_intensity_pois ON madrid_traffic_intensity_pois(code);
+
+
 -- CREATE TABLE madrid_traffic(
 --   id varchar(64) ,
 --   type varchar(16),
