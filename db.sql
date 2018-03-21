@@ -31,7 +31,7 @@ CREATE TABLE madrid_traffic_intensity_pois(
   created_at timestamp DEFAULT NOW()
 );
 
-create index madrid_traffic_intensity_pois ON madrid_traffic_intensity_pois(code);
+create index madrid_traffic_intensity_pois_idx ON madrid_traffic_intensity_pois(code);
 
 
 -- CREATE TABLE madrid_traffic(
