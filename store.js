@@ -19,3 +19,25 @@ module.exports.query = (q) => {
   });
   return p;
 };
+
+module.exports.uploadData = (url, table_name, collision_strategy) => {
+  let p = new Promise((resolve, reject) => {
+    let importer = new CartoDB.Import({
+      user: config.CARTO.USERNAME,
+      api_key: config.CARTO.API_KEY
+    });
+    let options = {
+      table_name: table_name,
+      collision_strategy: collision_strategy || 'overwrite'
+    };
+    importer.url(url, options)
+      .done(table_name => {
+        resolve(table_name);
+      })
+      .error((error) => {
+        console.error(error);
+        reject(new Error(`Cannot save data into CARTO: ${error}`));
+      });
+  });
+  return p;
+};
