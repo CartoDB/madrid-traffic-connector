@@ -35,3 +35,11 @@ module.exports.servicelevel = (event, context, callback) => {
 module.exports.intensitypois = (event, context, callback) => {
   run(require('intensitypois'), event, context, callback);
 };
+
+module.exports.trafficlightsacustw = (event, context, callback) => {
+  run(require('trafficlightsacustw'), event, context, callback);
+};
+
+module.exports.trafficlightsred = (event, context, callback) => {
+  run(require('trafficlightsred'), event, context, callback);
+};
