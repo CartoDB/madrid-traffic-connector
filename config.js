@@ -19,6 +19,10 @@ module.exports = {
     URL: 'https://datos.madrid.es/egob/catalogo/205193-0-semaforos-foto-rojo.zip',
     TABLE: process.env.TRAFF_LIGHTS_RED_TABLE || 'madrid_traffic_tlights_red'
   },
+  CAMERAS: {
+    URL: 'https://datos.madrid.es/egob/catalogo/202088-0-trafico-camaras.kml',
+    TABLE: process.env.CAMERAS_TABLE || 'madrid_traffic_cameras'
+  },
   CARTO: {
     USERNAME: process.env.CARTO_USERNAME,
     API_KEY: process.env.CARTO_API_KEY
