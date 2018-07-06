@@ -20,7 +20,7 @@ module.exports.query = (q) => {
   return p;
 };
 
-module.exports.uploadData = (url, table_name, collision_strategy) => {
+module.exports.uploadData = (url, table_name, collision_strategy, privacy) => {
   let p = new Promise((resolve, reject) => {
     let importer = new CartoDB.Import({
       user: config.CARTO.USERNAME,
@@ -28,7 +28,8 @@ module.exports.uploadData = (url, table_name, collision_strategy) => {
     });
     let options = {
       table_name: table_name,
-      collision_strategy: collision_strategy || 'overwrite'
+      collision_strategy: collision_strategy || 'overwrite',
+      privacy: privacy || 'link'
     };
     importer.url(url, options)
       .done(table_name => {
