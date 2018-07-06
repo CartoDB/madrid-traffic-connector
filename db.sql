@@ -7,8 +7,11 @@ CREATE TABLE madrid_traffic_incidences(
   finish timestamp,
   created_at timestamp DEFAULT NOW()
 );
-
-create index madrid_traffic_incidences_geom_idx ON madrid_traffic_incidences USING GIST(the_geom);
+SELECT cdb_cartodbfytable('madrid_traffic_incidences');
+CREATE INDEX madrid_traffic_incidences_start_idx ON madrid_traffic_incidences(start);
+CREATE INDEX madrid_traffic_incidences_finish_idx ON madrid_traffic_incidences(finish);
+CREATE INDEX madrid_traffic_incidences_type_idx ON madrid_traffic_incidences(type);
+ALTER TABLE madrid_traffic_incidences ADD CONSTRAINT madrid_traffic_incidences_id_unique UNIQUE (id);
 
 CREATE TABLE madrid_traffic_servicelevels(
   id serial,
@@ -16,9 +19,7 @@ CREATE TABLE madrid_traffic_servicelevels(
   status varchar(16),
   created_at timestamp DEFAULT NOW()
 );
-
-create index madrid_traffic_servicelevels_geom_idx ON madrid_traffic_servicelevels USING GIST(the_geom);
-
+SELECT cdb_cartodbfytable('madrid_traffic_servicelevels');
 
 CREATE TABLE madrid_traffic_intensity_pois(
   id serial,
@@ -31,7 +32,7 @@ CREATE TABLE madrid_traffic_intensity_pois(
   created_at timestamp DEFAULT NOW()
 );
 
-create index madrid_traffic_intensity_pois_idx ON madrid_traffic_intensity_pois(code);
+CREATE INDEX madrid_traffic_intensity_pois_idx ON madrid_traffic_intensity_pois(code);
 
 
 -- CREATE TABLE madrid_traffic(
