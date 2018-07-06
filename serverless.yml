@@ -5,6 +5,12 @@ provider:
   runtime: nodejs6.10
   region: eu-west-1
 
+package:
+  exclude:
+   - config.env
+   - node_modules/**
+   - '!node_modules/node-fetch/**'
+
 functions:
   incidences:
     handler: handler.incidences
@@ -49,4 +55,13 @@ functions:
       CARTO_API_KEY: ${env:CARTO_API_KEY}
     events:
       - schedule: rate(15 days)
+    timeout: 180
+
+  trafficlightsred:
+    handler: handler.cameras
+    environment:
+      CARTO_USERNAME: ${env:CARTO_USERNAME}
+      CARTO_API_KEY: ${env:CARTO_API_KEY}
+    events:
+      - schedule: rate(2 hours)
     timeout: 180
