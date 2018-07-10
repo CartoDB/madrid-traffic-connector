@@ -9,7 +9,9 @@ module.exports = {
   },
   INTENSITY: {
     POIS_URL: 'http://informo.munimadrid.es/informo/tmadrid/pm.xml',
-    POIS_TABLE: process.env.INTENSITY_POIS_TABLE || 'madrid_traffic_intensity_pois'
+    POIS_TABLE: process.env.INTENSITY_POIS_TABLE || 'madrid_traffic_intensity_pois',
+    LINES_URL: 'https://datos.madrid.es/egob/catalogo/208223-7605484-trafico-intensidad-tramas.kml',
+    LINES_TABLE: process.env.INTENSITY_LINES_TABLE || 'madrid_traffic_intensity_lines'
   },
   TRAFF_LIGHTS_ACUSTW: {
     URL: 'https://datos.madrid.es/egob/catalogo/202539-0-semaforos-avisadores.zip',

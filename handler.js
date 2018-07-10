@@ -36,6 +36,10 @@ module.exports.intensitypois = (event, context, callback) => {
   run(require('intensitypois'), event, context, callback);
 };
 
+module.exports.intensitylines = (event, context, callback) => {
+  run(require('intensitylines'), event, context, callback);
+};
+
 module.exports.trafficlightsacustw = (event, context, callback) => {
   run(require('trafficlightsacustw'), event, context, callback);
 };
