@@ -50,7 +50,7 @@ class Cameras {
             const cod_id = p.ExtendedData[0].Data[0].Value[0];
             const name = p.ExtendedData[0].Data[1].Value[0].replace("'","\\'");
             const coords = p.Point[0].coordinates[0];
-            const url = `${config.CAMERAS.URL_IMAGES}Cameras${cod_id}.jpg`;
+            const url = `${config.CAMERAS.URL_IMAGES}Camara${cod_id}.jpg`;
             let o = {
               the_geom: `ST_Force_2D(ST_SetSRID(
                           ST_GeomFromKML('<Point><coordinates>${coords}</coordinates></Point>')
