@@ -54,3 +54,34 @@ CREATE TABLE madrid_traffic_cameras(
   created_at timestamp DEFAULT NOW()
 );
 SELECT cdb_cartodbfytable('madrid_traffic_cameras');
+
+--DISTRICTS
+CREATE VIEW madrid_traffic_districts_pond_v As (
+  SELECT
+    cartodb_id, the_geom, the_geom_webmercator,
+    CASE
+      WHEN jm_pond = 0 THEN 'no_data'
+      WHEN jm_pond BETWEEN 0 AND 50 THEN 'low'
+      WHEN jm_pond BETWEEN 50 AND 100 THEN 'medium'
+      ELSE 'high'
+    END as pond
+  FROM (
+    SELECT
+      ds.cartodb_id, ds.the_geom,
+      ds.the_geom_webmercator,
+      COALESCE(SUM(jm.level_pond), 0) as jm_pond
+    FROM madrid_historic_district ds
+    LEFT JOIN LATERAL (
+      SELECT
+        CASE
+          WHEN level = 1 OR level IS NULL THEN 1
+          WHEN level = 2 THEN 2
+          WHEN level = 3 THEN 4
+          ELSE 8
+        END as level_pond
+      FROM madrid_waze_data_jams_mv
+      WHERE ST_Intersects(ds.the_geom, the_geom)
+    ) jm ON TRUE
+    GROUP BY ds.cartodb_id
+  ) _q
+);
