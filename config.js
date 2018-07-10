@@ -23,7 +23,8 @@ module.exports = {
   },
   CAMERAS: {
     URL: 'https://datos.madrid.es/egob/catalogo/202088-0-trafico-camaras.kml',
-    TABLE: process.env.CAMERAS_TABLE || 'madrid_traffic_cameras'
+    TABLE: process.env.CAMERAS_TABLE || 'madrid_traffic_cameras',
+    URL_IMAGES: 'http://informo.munimadrid.es/informo/camaras/'
   },
   CARTO: {
     USERNAME: process.env.CARTO_USERNAME,

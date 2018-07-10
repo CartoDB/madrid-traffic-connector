@@ -44,3 +44,13 @@ CREATE TABLE madrid_traffic_intensity_lines(
   created_at timestamp DEFAULT NOW()
 );
 SELECT cdb_cartodbfytable('madrid_traffic_intensity_lines');
+
+--CAMERAS
+CREATE TABLE madrid_traffic_cameras(
+  the_geom geometry(Point,4326),
+  name text,
+  cod_id text,
+  url text,
+  created_at timestamp DEFAULT NOW()
+);
+SELECT cdb_cartodbfytable('madrid_traffic_cameras');
