@@ -39,6 +39,15 @@ functions:
       - schedule: rate(5 minutes)
     timeout: 120
 
+  intensitylines:
+    handler: handler.intensitylines
+    environment:
+      CARTO_USERNAME: ${env:CARTO_USERNAME}
+      CARTO_API_KEY: ${env:CARTO_API_KEY}
+    events:
+      - schedule: rate(5 minutes)
+    timeout: 120
+
   trafficlightsacustw:
     handler: handler.trafficlightsacustw
     environment:
@@ -57,7 +66,7 @@ functions:
       - schedule: rate(15 days)
     timeout: 180
 
-  trafficlightsred:
+  cameras:
     handler: handler.cameras
     environment:
       CARTO_USERNAME: ${env:CARTO_USERNAME}
