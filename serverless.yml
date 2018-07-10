@@ -5,11 +5,17 @@ provider:
   runtime: nodejs6.10
   region: eu-west-1
 
+package:
+  exclude:
+   - config.env
+   - node_modules/**
+   - '!node_modules/node-fetch/**'
+
 functions:
   incidences:
     handler: handler.incidences
     environment:
-      CARTO_USERNAME: waze-traffic
+      CARTO_USERNAME: ${env:CARTO_USERNAME}
       CARTO_API_KEY: ${env:CARTO_API_KEY}
     events:
       - schedule: rate(2 minutes)
@@ -18,7 +24,7 @@ functions:
   servicelevel:
     handler: handler.servicelevel
     environment:
-      CARTO_USERNAME: waze-traffic
+      CARTO_USERNAME: ${env:CARTO_USERNAME}
       CARTO_API_KEY: ${env:CARTO_API_KEY}
     events:
       - schedule: rate(5 minutes)
@@ -27,8 +33,44 @@ functions:
   intensitypois:
     handler: handler.intensitypois
     environment:
-      CARTO_USERNAME: waze-traffic
+      CARTO_USERNAME: ${env:CARTO_USERNAME}
       CARTO_API_KEY: ${env:CARTO_API_KEY}
     events:
       - schedule: rate(5 minutes)
     timeout: 120
+
+  intensitylines:
+    handler: handler.intensitylines
+    environment:
+      CARTO_USERNAME: ${env:CARTO_USERNAME}
+      CARTO_API_KEY: ${env:CARTO_API_KEY}
+    events:
+      - schedule: rate(5 minutes)
+    timeout: 120
+
+  trafficlightsacustw:
+    handler: handler.trafficlightsacustw
+    environment:
+      CARTO_USERNAME: ${env:CARTO_USERNAME}
+      CARTO_API_KEY: ${env:CARTO_API_KEY}
+    events:
+      - schedule: rate(15 days)
+    timeout: 180
+
+  trafficlightsred:
+    handler: handler.trafficlightsred
+    environment:
+      CARTO_USERNAME: ${env:CARTO_USERNAME}
+      CARTO_API_KEY: ${env:CARTO_API_KEY}
+    events:
+      - schedule: rate(15 days)
+    timeout: 180
+
+  cameras:
+    handler: handler.cameras
+    environment:
+      CARTO_USERNAME: ${env:CARTO_USERNAME}
+      CARTO_API_KEY: ${env:CARTO_API_KEY}
+    events:
+      - schedule: rate(2 hours)
+    timeout: 180

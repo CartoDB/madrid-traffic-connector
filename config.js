@@ -9,7 +9,9 @@ module.exports = {
   },
   INTENSITY: {
     POIS_URL: 'http://informo.munimadrid.es/informo/tmadrid/pm.xml',
-    POIS_TABLE: process.env.INTENSITY_POIS_TABLE || 'madrid_traffic_intensity_pois'
+    POIS_TABLE: process.env.INTENSITY_POIS_TABLE || 'madrid_traffic_intensity_pois',
+    LINES_URL: 'https://datos.madrid.es/egob/catalogo/208223-7605484-trafico-intensidad-tramas.kml',
+    LINES_TABLE: process.env.INTENSITY_LINES_TABLE || 'madrid_traffic_intensity_lines'
   },
   TRAFF_LIGHTS_ACUSTW: {
     URL: 'https://datos.madrid.es/egob/catalogo/202539-0-semaforos-avisadores.zip',
@@ -18,6 +20,11 @@ module.exports = {
   TRAFF_LIGHTS_RED: {
     URL: 'https://datos.madrid.es/egob/catalogo/205193-0-semaforos-foto-rojo.zip',
     TABLE: process.env.TRAFF_LIGHTS_RED_TABLE || 'madrid_traffic_tlights_red'
+  },
+  CAMERAS: {
+    URL: 'https://datos.madrid.es/egob/catalogo/202088-0-trafico-camaras.kml',
+    TABLE: process.env.CAMERAS_TABLE || 'madrid_traffic_cameras',
+    URL_IMAGES: 'http://informo.munimadrid.es/informo/camaras/'
   },
   CARTO: {
     USERNAME: process.env.CARTO_USERNAME,
