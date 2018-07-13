@@ -48,6 +48,6 @@ module.exports.trafficlightsred = (event, context, callback) => {
   run(require('trafficlightsred'), event, context, callback);
 };
 
-module.exports.trafficlightsred = (event, context, callback) => {
+module.exports.cameras = (event, context, callback) => {
   run(require('cameras'), event, context, callback);
 };
