@@ -85,3 +85,4 @@ CREATE VIEW madrid_traffic_districts_pond_v As (
     GROUP BY ds.cartodb_id
   ) _q
 );
+GRANT SELECT ON madrid_traffic_districts_pond_v TO publicuser;
