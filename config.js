@@ -22,9 +22,9 @@ module.exports = {
     TABLE: process.env.TRAFF_LIGHTS_RED_TABLE || 'madrid_traffic_tlights_red'
   },
   CAMERAS: {
-    URL: 'https://datos.madrid.es/egob/catalogo/202088-0-trafico-camaras.kml',
+    URL: 'http://informo.munimadrid.es/informo/tmadrid/CCTV.KML',
     TABLE: process.env.CAMERAS_TABLE || 'madrid_traffic_cameras',
-    URL_IMAGES: 'http://informo.munimadrid.es/informo/camaras/'
+    URL_IMAGES: 'http://172.30.220.11/cameras/'
   },
   CARTO: {
     USERNAME: process.env.CARTO_USERNAME,

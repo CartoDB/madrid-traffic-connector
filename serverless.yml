@@ -2,14 +2,12 @@ service: madrid-traffic-connector
 
 provider:
   name: aws
-  runtime: nodejs6.10
+  runtime: nodejs8.10
   region: eu-west-1
 
 package:
   exclude:
    - config.env
-   - node_modules/**
-   - '!node_modules/node-fetch/**'
 
 functions:
   incidences:
