@@ -56,9 +56,10 @@ CREATE TABLE madrid_traffic_cameras(
 SELECT cdb_cartodbfytable('madrid_traffic_cameras');
 
 --DISTRICTS
-CREATE VIEW madrid_traffic_districts_pond_v As (
+CREATE OR REPLACE VIEW madrid_traffic_districts_pond_v As (
   SELECT
-    cartodb_id, the_geom, the_geom_webmercator,
+    cartodb_id, the_geom, the_geom_webmercator, name,
+
     CASE
       WHEN jm_pond = 0 THEN 'no_data'
       WHEN jm_pond BETWEEN 0 AND 50 THEN 'low'
@@ -67,7 +68,7 @@ CREATE VIEW madrid_traffic_districts_pond_v As (
     END as pond
   FROM (
     SELECT
-      ds.cartodb_id, ds.the_geom,
+      ds.cartodb_id, ds.the_geom, ds.nombre as name,
       ds.the_geom_webmercator,
       COALESCE(SUM(jm.level_pond), 0) as jm_pond
     FROM madrid_historic_district ds
