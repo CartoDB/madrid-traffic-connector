@@ -29,3 +29,22 @@ Example:
 ```
 CARTO_USERNAME=cartouser CARTO_API_KEY=cartoapikey node run_connector.js -c cameras
 ```
+
+## AWS Lambda deploy
+
+AWS Lambda deploy function:
+
+```
+$ serverless deploy -v
+```
+
+AWS Lambda  invoke function:
+
+```
+$ serverless invoke -f myfunction -l
+```
+
+AWS Lambda update function (without AWS CloudFormation because is slow):
+
+```
+$ serverless deploy function -f myfunction -v

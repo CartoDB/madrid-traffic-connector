@@ -107,8 +107,8 @@ class ServiceLevel {
     for (let d of data) {
       q.push(`
           INSERT INTO ${config.SERVICE_LEVEL.TABLE}
-                (the_geom,status)
-              VALUES (${d.the_geom},'${d.status}');
+                (the_geom,status,created_at)
+              VALUES (${d.the_geom},'${d.status}',now());
         `);
     }
 
