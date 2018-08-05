@@ -9,10 +9,11 @@ class StreetsGeocoder {
         .then((data) => {
           this.getWazeData(data)
             .then((stgeocod) => {
-              console.log(this.buildSQL(stgeocod));
-              store.query(this.buildSQL(stgeocod))
-                .then(d => resolve())
-                .catch(e => reject(e));
+              if (stgeocod.length > 0) {
+                store.query(this.buildSQL(stgeocod))
+                  .then(d => resolve())
+                  .catch(e => reject(e));
+              }
             })
             .catch((err) => {
               console.log(err);
@@ -60,9 +61,6 @@ class StreetsGeocoder {
             }
           }
         }
-        if (!stgeocod.length) {
-          reject(new Error('No length after parser'));
-        }
         resolve(stgeocod);
       })
       .catch((err) => {
@@ -83,7 +81,6 @@ class StreetsGeocoder {
 
   buildSQL (data) {
     let q = [];
-    console.log('@@@@@@@@@@@', data);
     for (let d of data) {
       q.push(`UPDATE ${config.INCIDENCES.TABLE}
                   SET street = E'${d.stname.replace(/'/g, "\\'")}'
