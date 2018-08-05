@@ -10,7 +10,7 @@ module.exports.query = (q) => {
     });
     sql.execute(q)
       .done(d => {
-        resolve();
+        resolve(d);
       })
       .error((error) => {
         console.error(error);
