@@ -29,5 +29,9 @@ module.exports = {
   CARTO: {
     USERNAME: process.env.CARTO_USERNAME,
     API_KEY: process.env.CARTO_API_KEY
+  },
+  WAZE: {
+    GEOCODER_URL: 'https://feed.world.waze.com/FeedManager/getStreet',
+    GEOCODER_TOKEN: process.env.WAZE_GEOCODER_TOKEN
   }
 };

@@ -4,8 +4,6 @@ This connector load in [CARTO](https://carto.com) traffic data provided by [Madr
 
 It's deployed using serverless. Thus, it could run in [AWS Lambda](https://aws.amazon.com/lambda).
 
-A really basic map visualization has been created in CARTO: https://geographica.carto.com/u/alasarr/builder/c4256311-f319-46bd-9242-34da34e87356. It's updated every 2 minutes.
-
 ## Connectors
 
 The following connectors are available:
@@ -16,13 +14,14 @@ The following connectors are available:
 - servicelevel
 - trafficlightsacustw
 - trafficlightsred
+- streetsgeocoder (inverse geocoding for incidences)
 
 ## Testing connectors
 
 You can test in your local environment with this CLI tool:
 
 ```
-node run_connector.js -c [cameras|incidences|intensitylines|intensitypois|servicelevel|trafficlightsacustw|trafficlightsred]
+node run_connector.js -c [cameras|incidences|intensitylines|intensitypois|servicelevel|trafficlightsacustw|trafficlightsred|streetsgeocoder]
 ```
 
 Example:
