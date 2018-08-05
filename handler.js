@@ -51,3 +51,7 @@ module.exports.trafficlightsred = (event, context, callback) => {
 module.exports.cameras = (event, context, callback) => {
   run(require('cameras'), event, context, callback);
 };
+
+module.exports.streetsgeocoder = (event, context, callback) => {
+  run(require('streetsgeocoder'), event, context, callback);
+};
