@@ -1,6 +1,6 @@
 # Madrid traffic connector
 
-This connector load in [CARTO](https://carto.com) traffic data provided by [Madrid's Open Data Portal](https://datos.madrid.es/).
+This connector loads in [CARTO](https://carto.com) traffic data provided by [Madrid's Open Data Portal](https://datos.madrid.es/).
 
 It's deployed using serverless. Thus, it could run in [AWS Lambda](https://aws.amazon.com/lambda).
 
