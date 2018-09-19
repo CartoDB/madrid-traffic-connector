@@ -24,7 +24,7 @@ module.exports = {
   CAMERAS: {
     URL: 'http://informo.munimadrid.es/informo/tmadrid/CCTV.KML',
     TABLE: process.env.CAMERAS_TABLE || 'madrid_traffic_cameras',
-    URL_IMAGES: 'http://172.30.220.11/cameras/'
+    URL_IMAGES: '/cameras/'
   },
   CARTO: {
     USERNAME: process.env.CARTO_USERNAME,
