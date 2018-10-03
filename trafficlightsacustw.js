@@ -21,6 +21,7 @@ class TrafficLightsAcustW {
             DROP TABLE IF EXISTS ${config.TRAFF_LIGHTS_ACUSTW.TABLE};
             ALTER TABLE ${data} RENAME TO ${config.TRAFF_LIGHTS_ACUSTW.TABLE};
             DROP TABLE IF EXISTS ${data};
+            GRANT SELECT ON ${config.TRAFF_LIGHTS_ACUSTW.TABLE} TO publicuser;
             COMMIT;
             `;
   }
