@@ -18,10 +18,10 @@ class TrafficLightsAcustW {
 
   buildSQL (data) {
     return `BEGIN;
-            DROP TABLE IF EXISTS ${config.TRAFF_LIGHTS_ACUSTW.TABLE};
-            ALTER TABLE ${data} RENAME TO ${config.TRAFF_LIGHTS_ACUSTW.TABLE};
-            DROP TABLE IF EXISTS ${data};
-            GRANT SELECT ON ${config.TRAFF_LIGHTS_ACUSTW.TABLE} TO publicuser;
+              DELETE FROM ${config.TRAFF_LIGHTS_ACUSTW.TABLE};
+              INSERT INTO ${config.TRAFF_LIGHTS_ACUSTW.TABLE}
+                SELECT * FROM ${data};
+              DROP TABLE IF EXISTS ${data};
             COMMIT;
             `;
   }
