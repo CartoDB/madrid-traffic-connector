@@ -22,7 +22,7 @@ The following connectors are available:
 You can test in your local environment with this CLI tool:
 
 ```
-node run_connector.js -c [cameras|incidences|intensitylines|intensitypois|servicelevel|trafficlightsacustw|trafficlightsred|streetsgeocoder|pollutionIncidences]
+node run_connector.js -c [cameras|incidences|intensitylines|intensitypois|servicelevel|trafficlightsacustw|trafficlightsred|streetsgeocoder|pollutionincidences]
 ```
 
 Example:
