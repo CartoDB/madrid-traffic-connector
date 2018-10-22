@@ -87,3 +87,19 @@ CREATE OR REPLACE VIEW madrid_traffic_districts_pond_v As (
   ) _q
 );
 GRANT SELECT ON madrid_traffic_districts_pond_v TO publicuser;
+
+-- POLLUTION INCIDENCES
+CREATE TABLE madrid_traffic_pollution_incidences(
+  id integer,
+  level text,
+  description text,
+  measures text,
+  exceptions text,
+  start timestamp,
+  finish timestamp,
+  created_at timestamp DEFAULT NOW()
+);
+SELECT cdb_cartodbfytable('madrid_traffic_pollution_incidences');
+CREATE INDEX madrid_traffic_pollution_incidences_start_idx ON madrid_traffic_pollution_incidences(start);
+CREATE INDEX madrid_traffic_pollution_incidences_finish_idx ON madrid_traffic_pollution_incidences(finish);
+CREATE INDEX madrid_traffic_pollution_incidences_level_idx ON madrid_traffic_pollution_incidences(level);

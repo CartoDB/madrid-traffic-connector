@@ -6,6 +6,7 @@ const ServiceLevel = require('./servicelevel');
 const TrafficLightsAcustW = require('./trafficlightsacustw');
 const TrafficLightsRed = require('./trafficlightsred');
 const StreetsGeocoder = require('./streetsgeocoder');
+const PollutionIncidences = require('./pollutionIncidences');
 const argv = require('minimist')(process.argv.slice(2));
 
 
@@ -27,6 +28,8 @@ function getTrafficConnector(connector) {
       return new TrafficLightsRed();
     case 'streetsgeocoder':
       return new StreetsGeocoder();
+    case 'pollutionIncidences':
+      return new PollutionIncidences();
     default:
       console.error('You must use a valid connector...');
       process.exit();

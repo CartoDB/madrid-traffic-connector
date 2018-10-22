@@ -26,6 +26,11 @@ module.exports = {
     TABLE: process.env.CAMERAS_TABLE || 'madrid_traffic_cameras',
     URL_IMAGES: '/cameras/'
   },
+  POLLUTION: {
+    // TODO: Add correct data source URL
+    URL: '',
+    TABLE: process.env.POLLUTION_INCIDENCES_TABLE || 'madrid_traffic_pollution_incidences'
+  },
   CARTO: {
     USERNAME: process.env.CARTO_USERNAME,
     API_KEY: process.env.CARTO_API_KEY
