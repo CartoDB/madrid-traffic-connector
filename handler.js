@@ -55,3 +55,7 @@ module.exports.cameras = (event, context, callback) => {
 module.exports.streetsgeocoder = (event, context, callback) => {
   run(require('streetsgeocoder'), event, context, callback);
 };
+
+module.exports.pollutionIncidences = (event, context, callback) => {
+  run(require('pollutionIncidences'), event, context, callback);
+};

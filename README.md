@@ -15,13 +15,14 @@ The following connectors are available:
 - trafficlightsacustw
 - trafficlightsred
 - streetsgeocoder (inverse geocoding for incidences)
+- pollutionincidences
 
 ## Testing connectors
 
 You can test in your local environment with this CLI tool:
 
 ```
-node run_connector.js -c [cameras|incidences|intensitylines|intensitypois|servicelevel|trafficlightsacustw|trafficlightsred|streetsgeocoder]
+node run_connector.js -c [cameras|incidences|intensitylines|intensitypois|servicelevel|trafficlightsacustw|trafficlightsred|streetsgeocoder|pollutionincidences]
 ```
 
 Example:
