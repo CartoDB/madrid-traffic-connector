@@ -15,7 +15,7 @@ The following connectors are available:
 - trafficlightsacustw
 - trafficlightsred
 - streetsgeocoder (inverse geocoding for incidences)
-- pollutionIncidences
+- pollutionincidences
 
 ## Testing connectors
 
