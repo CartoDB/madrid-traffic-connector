@@ -28,7 +28,7 @@ function getTrafficConnector(connector) {
       return new TrafficLightsRed();
     case 'streetsgeocoder':
       return new StreetsGeocoder();
-    case 'pollutionIncidences':
+    case 'pollutionincidences':
       return new PollutionIncidences();
     default:
       console.error('You must use a valid connector...');
