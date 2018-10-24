@@ -89,5 +89,5 @@ functions:
       #CARTO_USERNAME: ${env:CARTO_USERNAME}
       #CARTO_API_KEY: ${env:CARTO_API_KEY}
     events:
-      - schedule: rate(5 minutes)
+      - schedule: rate(30 minutes)
     timeout: 60
