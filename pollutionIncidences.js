@@ -47,7 +47,7 @@ class PollutionIncidences {
     let p = new Promise((resolve, reject) => {
       parseString(xml, (err, result) => {
         if (err) return reject(err);
-        let incidences = result.Incidencias.Incidencia;
+        let incidences = result.NewDataSet.Incidencias;
         let data = [];
         for (let incd of incidences) {
           try {

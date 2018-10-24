@@ -27,8 +27,7 @@ module.exports = {
     URL_IMAGES: '/cameras/'
   },
   POLLUTION: {
-    // TODO: Add correct data source URL
-    URL: '',
+    URL: 'http://informo.munimadrid.es/informo/tmadrid/incid_aytomadrid.xml',
     TABLE: process.env.POLLUTION_INCIDENCES_TABLE || 'madrid_traffic_pollution_incidences'
   },
   CARTO: {
