@@ -103,3 +103,16 @@ SELECT cdb_cartodbfytable('madrid_traffic_pollution_incidences');
 CREATE INDEX madrid_traffic_pollution_incidences_start_idx ON madrid_traffic_pollution_incidences(start);
 CREATE INDEX madrid_traffic_pollution_incidences_finish_idx ON madrid_traffic_pollution_incidences(finish);
 CREATE INDEX madrid_traffic_pollution_incidences_level_idx ON madrid_traffic_pollution_incidences(level);
+
+-- TLIGHTS ACUSTW
+CREATE TABLE madrid_traffic_tlights_acustw(
+  tipo_elem text,
+  distrito integer,
+  id integer,
+  id_cruce integer,
+  fecha_inst text,
+  x double precision,
+  y double precision,
+  created_at timestamp DEFAULT NOW()
+);
+SELECT cdb_cartodbfytable('madrid_traffic_tlights_acustw');
