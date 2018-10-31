@@ -1,10 +1,10 @@
 module.exports = {
   INCIDENCES: {
-    URL: 'http://datos.madrid.es/egob/catalogo/208252-0-incidencias-viapublica-mapa.kml',
+    URL: 'http://informo.munimadrid.es/informo/tmadrid/INTENSIDADES.kml',
     TABLE: process.env.INCIDENCES_TABLE || 'madrid_traffic_incidences'
   },
   SERVICE_LEVEL: {
-    URL: 'http://informo.munimadrid.es/informo/tmadrid/tramos.kml',
+    URL: 'http://informo.munimadrid.es/informo/tmadrid/TRAMOS.kml',
     TABLE: process.env.SERVICE_LEVEL_TABLE || 'madrid_traffic_servicelevels'
   },
   INTENSITY: {
