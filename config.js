@@ -1,6 +1,6 @@
 module.exports = {
   INCIDENCES: {
-    URL: 'http://informo.munimadrid.es/informo/tmadrid/INTENSIDADES.kml',
+    URL: 'http://informo.munimadrid.es/informo/tmadrid/PTINFO.kml',
     TABLE: process.env.INCIDENCES_TABLE || 'madrid_traffic_incidences'
   },
   SERVICE_LEVEL: {
@@ -10,7 +10,7 @@ module.exports = {
   INTENSITY: {
     POIS_URL: 'http://informo.munimadrid.es/informo/tmadrid/pm.xml',
     POIS_TABLE: process.env.INTENSITY_POIS_TABLE || 'madrid_traffic_intensity_pois',
-    LINES_URL: 'https://datos.madrid.es/egob/catalogo/208223-7605484-trafico-intensidad-tramas.kml',
+    LINES_URL: 'http://informo.munimadrid.es/informo/tmadrid/INTENSIDADES.kml',
     LINES_TABLE: process.env.INTENSITY_LINES_TABLE || 'madrid_traffic_intensity_lines'
   },
   TRAFF_LIGHTS_ACUSTW: {
