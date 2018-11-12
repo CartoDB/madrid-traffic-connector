@@ -52,7 +52,7 @@ class Cameras {
             const coords = p.Point[0].coordinates[0];
             const url = `${config.CAMERAS.URL_IMAGES}Camara${cod_id}.jpg`;
             let o = {
-              the_geom: `ST_Force_2D(ST_SetSRID(
+              the_geom: `ST_Force2D(ST_SetSRID(
                           ST_GeomFromKML('<Point><coordinates>${coords}</coordinates></Point>')
                         ,4326))`,
               name: name,

@@ -80,7 +80,7 @@ class ServiceLevel {
             const status = this.styleToStatus(p.styleUrl[0].substring(1));
             const coords = p.LineString[0].coordinates[0];
             let o = {
-              the_geom: `ST_Force_2D(ST_SetSRID(
+              the_geom: `ST_Force2D(ST_SetSRID(
                           ST_GeomFromKML('<LineString><coordinates>${coords}</coordinates></LineString>')
                         ,4326))`,
               status: status

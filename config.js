@@ -22,7 +22,7 @@ module.exports = {
     TABLE: process.env.TRAFF_LIGHTS_RED_TABLE || 'madrid_traffic_tlights_red'
   },
   CAMERAS: {
-    URL: 'http://informo.munimadrid.es/informo/tmadrid/CCTV.KML',
+    URL: 'http://informo.munimadrid.es/informo/tmadrid/CCTV.kml',
     TABLE: process.env.CAMERAS_TABLE || 'madrid_traffic_cameras',
     URL_IMAGES: '/cameras/'
   },
