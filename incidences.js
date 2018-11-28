@@ -40,15 +40,15 @@ class Incidences {
   }
   styleToType (id) {
     switch (id) {
-      case '0':
-        return 'CONSTRUCTION';
       case '1':
-        return 'ACCIDENT';
+        return 'CONSTRUCTION';
       case '2':
-        return 'ALERT';
+        return 'ACCIDENT';
       case '3':
-        return 'EVENT';
+        return 'ALERT';
       case '4':
+        return 'EVENT';
+      case '5':
         return 'PREVISION';
     }
   }
@@ -59,38 +59,32 @@ class Incidences {
     return `${date[2]}-${date[1]}-${date[0]} ${date[3]}:${date[4]}`;
   }
 
-  parseDesc (desc) {
-    let cleanInput = desc.replace(/<\/?\w+>/g, '');
-    let match = cleanInput.match(/\d{1,2}\/\d{1,2}\/\d{4}\s\d{1,2}:\d{2}/g);
-    return {
-      start: this.toSQLDate(match[0]),
-      finish: this.toSQLDate(match[1]),
-      desc: cleanInput.replace(/\.?\s?\[(Inicio|Final):[\s\d/:]+\]/ig, '')
-    };
-  }
-
   parse (xml) {
     let p = new Promise((resolve, reject) => {
       parseString(xml, (err, result) => {
         if (err) return reject(err);
-        let doc = result.kml.Document[0];
-        let placeMarks = doc.Placemark;
+        let incidences = result.Incidencias.Incidencia;
         let data = [];
-        for (let p of placeMarks) {
+        for (let incd of incidences) {
           try {
-            let coord = p.Point[0].coordinates[0].split(',').slice(0, 2);
-            let type = this.styleToType(p.styleUrl[0].slice(-1));
-            let parseDesc = this.parseDesc(p.description[0]);
-            let o = {
-              the_geom: `ST_SetSRID(ST_MakePoint(${coord}),4326)`,
-              type: type,
-              description: parseDesc.desc,
-              start: parseDesc.start,
-              finish: parseDesc.finish
-            };
+            if (incd.es_contaminacion[0] === 'N') {
+              let coord = [incd.longitud[0], incd.latitud[0]]
+              let type = this.styleToType(incd.tipoincid[0]);
+              let desc = incd.descripcion[0]
+              let start = incd.fh_inicio[0]
+              let finish = incd.fh_final[0]
 
-            o['id'] = hash(o);
-            data.push(o);
+              let o = {
+                the_geom: `ST_SetSRID(ST_MakePoint(${coord}),4326)`,
+                type: type,
+                description: desc,
+                start: start,
+                finish: finish
+              };
+
+              o['id'] = hash(o);
+              data.push(o);
+            }
           } catch (err) {
             // Catch exception to avoid abort all the features
             console.error('Error parsing element');

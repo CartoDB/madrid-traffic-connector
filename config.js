@@ -1,6 +1,6 @@
 module.exports = {
   INCIDENCES: {
-    URL: 'http://informo.munimadrid.es/informo/tmadrid/PTINFO.kml',
+    URL: 'http://informo.munimadrid.es/informo/tmadrid/incid_aytomadrid.xml',
     TABLE: process.env.INCIDENCES_TABLE || 'madrid_traffic_incidences'
   },
   SERVICE_LEVEL: {
