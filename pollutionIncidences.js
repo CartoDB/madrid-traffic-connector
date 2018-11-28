@@ -89,10 +89,10 @@ class PollutionIncidences {
     for (let d of data) {
       q.push(`
               INSERT INTO ${config.POLLUTION.TABLE}
-                (id, level, description, measures, exceptions, start, finish)
+                (id, level, description, measures, exceptions, start, finish, created_at)
               VALUES (${d.id}, '${d.level}', '${d.description}',
                       '${d.measures}', '${d.exceptions}', '${d.start}',
-                      '${d.finish}');
+                      '${d.finish}', now());
         `);
     }
 

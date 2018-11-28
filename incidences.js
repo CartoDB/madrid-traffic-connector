@@ -104,8 +104,8 @@ class Incidences {
     let q = [];
     for (let d of data) {
       q.push(`INSERT INTO ${config.INCIDENCES.TABLE}
-                (id,the_geom,type,description,start,finish)
-              VALUES ('${d.id}',${d.the_geom},'${d.type}','${d.description}','${d.start}','${d.finish}')
+                (id,the_geom,type,description,start,finish, created_at)
+              VALUES ('${d.id}',${d.the_geom},'${d.type}','${d.description}','${d.start}','${d.finish}', now())
               ON CONFLICT DO NOTHING;`);
     }
 

@@ -93,8 +93,8 @@ class IntensityPois {
     for (let d of data) {
       q.push(`
           INSERT INTO ${config.INTENSITY.POIS_TABLE}
-                (code,intensity,occupancy,load,service_level,speed)
-              VALUES ('${d.code}',${d.intensity},${d.occupancy},${d.load},${d.service_level},${d.speed});
+                (code,intensity,occupancy,load,service_level,speed,created_at)
+              VALUES ('${d.code}',${d.intensity},${d.occupancy},${d.load},${d.service_level},${d.speed},now());
         `);
     }
 
