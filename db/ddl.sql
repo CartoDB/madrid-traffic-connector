@@ -4,9 +4,11 @@ CREATE TABLE madrid_traffic_incidences(
   the_geom geometry(Point,4326),
   type varchar(16),
   description text,
+  is_planned boolean,
+  is_foreseen boolean,
   start timestamp,
   finish timestamp,
-  created_at timestamp DEFAULT NOW()
+  created_at timestamp
 );
 SELECT cdb_cartodbfytable('madrid_traffic_incidences');
 CREATE INDEX madrid_traffic_incidences_start_idx ON madrid_traffic_incidences(start);
@@ -19,7 +21,7 @@ CREATE TABLE madrid_traffic_servicelevels(
   id serial,
   the_geom geometry(LineString,4326),
   status varchar(16),
-  created_at timestamp DEFAULT NOW()
+  created_at timestamp
 );
 SELECT cdb_cartodbfytable('madrid_traffic_servicelevels');
 
@@ -32,7 +34,7 @@ CREATE TABLE madrid_traffic_intensity_pois(
   load integer,
   service_level integer,
   speed integer,
-  created_at timestamp DEFAULT NOW()
+  created_at timestamp
 );
 CREATE INDEX madrid_traffic_intensity_pois_idx ON madrid_traffic_intensity_pois(code);
 
@@ -41,7 +43,7 @@ CREATE TABLE madrid_traffic_intensity_lines(
   id serial,
   the_geom geometry(LineString,4326),
   intensity integer,
-  created_at timestamp DEFAULT NOW()
+  created_at timestamp
 );
 SELECT cdb_cartodbfytable('madrid_traffic_intensity_lines');
 
@@ -51,7 +53,7 @@ CREATE TABLE madrid_traffic_cameras(
   name text,
   cod_id text,
   url text,
-  created_at timestamp DEFAULT NOW()
+  created_at timestamp
 );
 SELECT cdb_cartodbfytable('madrid_traffic_cameras');
 
@@ -97,7 +99,7 @@ CREATE TABLE madrid_traffic_pollution_incidences(
   exceptions text,
   start timestamp,
   finish timestamp,
-  created_at timestamp DEFAULT NOW()
+  created_at timestamp
 );
 SELECT cdb_cartodbfytable('madrid_traffic_pollution_incidences');
 CREATE INDEX madrid_traffic_pollution_incidences_start_idx ON madrid_traffic_pollution_incidences(start);
@@ -111,8 +113,32 @@ CREATE TABLE madrid_traffic_tlights_acustw(
   id integer,
   id_cruce integer,
   fecha_inst text,
-  x double precision,
-  y double precision,
-  created_at timestamp DEFAULT NOW()
+  utm_x double precision,
+  utm_y double precision,
+  latitud double precision,
+  longitud double precision,
+  created_at timestamp
 );
 SELECT cdb_cartodbfytable('madrid_traffic_tlights_acustw');
+
+-- TLIGHTS RED
+CREATE TABLE madrid_traffic_tlights_red(
+  activo integer,
+  bdistrito text,
+  icruce integer,
+  cod_cent text,
+  cnombre text,
+  sfr_cx text,
+  sfr_cy text,
+  sfr_ubic text,
+  averia text,
+  averia_des text,
+  gid bigint,
+  tipo_elem bigint,
+  idelem bigint,
+  verif text,
+  observ text,
+  nombre text,
+  created_at timestamp
+);
+SELECT cdb_cartodbfytable('madrid_traffic_tlights_red');

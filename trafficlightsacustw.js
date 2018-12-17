@@ -21,6 +21,8 @@ class TrafficLightsAcustW {
               DELETE FROM ${config.TRAFF_LIGHTS_ACUSTW.TABLE};
               INSERT INTO ${config.TRAFF_LIGHTS_ACUSTW.TABLE}
                 SELECT * FROM ${data};
+              UPDATE ${config.TRAFF_LIGHTS_ACUSTW.TABLE}
+                SET created_at = now();
               DROP TABLE IF EXISTS ${data};
             COMMIT;
             `;

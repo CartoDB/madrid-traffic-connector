@@ -87,20 +87,39 @@ class PollutionIncidences {
   buildSQL (data) {
     const q = [];
     for (let d of data) {
-      q.push(`
-              INSERT INTO ${config.POLLUTION.TABLE}
-                (id, level, description, measures, exceptions, start, finish)
-              VALUES (${d.id}, '${d.level}', '${d.description}',
-                      '${d.measures}', '${d.exceptions}', '${d.start}',
-                      '${d.finish}');
-        `);
+      q.push(
+        `
+        INSERT INTO ${config.POLLUTION.TABLE}
+        (
+          id,
+          level,
+          description,
+          measures,
+          exceptions,
+          start,
+          finish,
+          created_at
+        )
+        VALUES (
+          ${d.id},
+          '${d.level}',
+          '${d.description}',
+          '${d.measures}',
+          '${d.exceptions}',
+          '${d.start}',
+          '${d.finish}',
+          now()
+        )
+        ON CONFLICT DO NOTHING;`
+      );
     }
 
-    return `BEGIN;
-            -- DELETE FROM ${config.POLLUTION.TABLE};
-            ${q.join(' ')}
-            COMMIT;
-            `;
+    return `
+      BEGIN;
+      DELETE FROM ${config.POLLUTION.TABLE};
+      ${q.join(' ')}
+      COMMIT;
+    `;
   }
 }
 
