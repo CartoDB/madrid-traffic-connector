@@ -68,16 +68,20 @@ class Incidences {
         for (let incd of incidences) {
           try {
             if (incd.es_contaminacion[0] === 'N') {
-              let coord = [incd.longitud[0], incd.latitud[0]]
+              let coord = [incd.longitud[0], incd.latitud[0]];
               let type = this.styleToType(incd.tipoincid[0]);
-              let desc = incd.descripcion[0]
-              let start = incd.fh_inicio[0]
-              let finish = incd.fh_final[0]
+              let desc = incd.descripcion[0];
+              let start = incd.fh_inicio[0];
+              let finish = incd.fh_final[0];
+              let is_planned = incd.incid_planificada[0] === 'S';
+              let is_foreseen = incd.incid_prevista[0] === 'S';
 
               let o = {
                 the_geom: `ST_SetSRID(ST_MakePoint(${coord}),4326)`,
                 type: type,
                 description: desc,
+                is_planned: is_planned,
+                is_foreseen: is_foreseen,
                 start: start,
                 finish: finish
               };
@@ -103,13 +107,41 @@ class Incidences {
   buildSQL (data) {
     let q = [];
     for (let d of data) {
-      q.push(`INSERT INTO ${config.INCIDENCES.TABLE}
-                (id,the_geom,type,description,start,finish, created_at)
-              VALUES ('${d.id}',${d.the_geom},'${d.type}','${d.description}','${d.start}','${d.finish}', now())
-              ON CONFLICT DO NOTHING;`);
+      q.push(
+        `
+        INSERT INTO ${config.INCIDENCES.TABLE}
+        (
+          id,
+          the_geom,
+          type,
+          description,
+          is_planned,
+          is_foreseen,
+          start,
+          finish,
+          created_at
+        )
+        VALUES (
+          '${d.id}',
+          ${d.the_geom},
+          '${d.type}',
+          '${d.description}',
+          ${d.is_planned},
+          ${d.is_foreseen},
+          '${d.start}',
+          '${d.finish}',
+          now()
+        )
+        ON CONFLICT DO NOTHING;`
+      );
     }
 
-    return q.join(' ');
+    return `
+      BEGIN;
+      DELETE FROM ${config.INCIDENCES.TABLE};
+      ${q.join(' ')}
+      COMMIT;
+      `;
   }
 }
 

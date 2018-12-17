@@ -4,6 +4,8 @@ CREATE TABLE madrid_traffic_incidences(
   the_geom geometry(Point,4326),
   type varchar(16),
   description text,
+  is_planned boolean,
+  is_foreseen boolean,
   start timestamp,
   finish timestamp,
   created_at timestamp
