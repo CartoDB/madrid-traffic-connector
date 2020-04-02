@@ -123,22 +123,12 @@ SELECT cdb_cartodbfytable('madrid_traffic_tlights_acustw');
 
 -- TLIGHTS RED
 CREATE TABLE madrid_traffic_tlights_red(
-  activo integer,
-  bdistrito text,
-  icruce integer,
-  cod_cent text,
-  cnombre text,
-  sfr_cx text,
-  sfr_cy text,
-  sfr_ubic text,
-  averia text,
-  averia_des text,
-  gid bigint,
-  tipo_elem bigint,
-  idelem bigint,
-  verif text,
-  observ text,
+  id integer,
   nombre text,
+  activo integer,
+  distrito text,
+  id_cruce integer,
+  fecha_denu text,
   created_at timestamp
 );
 SELECT cdb_cartodbfytable('madrid_traffic_tlights_red');
