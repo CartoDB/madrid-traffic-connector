@@ -59,3 +59,7 @@ module.exports.streetsgeocoder = (event, context, callback) => {
 module.exports.pollutionIncidences = (event, context, callback) => {
   run(require('pollutionIncidences'), event, context, callback);
 };
+
+module.exports.pollutionScenarios = (event, context, callback) => {
+  run(require('pollution-scenarios'), event, context, callback);
+};

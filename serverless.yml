@@ -2,7 +2,7 @@ service: madrid-traffic-connector
 
 provider:
   name: aws
-  runtime: nodejs8.10
+  runtime: nodejs12.x
   region: eu-west-1
 
 package:
@@ -13,8 +13,8 @@ functions:
   incidences:
     handler: handler.incidences
     environment:
-      #CARTO_USERNAME: ${env:CARTO_USERNAME}
-      #CARTO_API_KEY: ${env:CARTO_API_KEY}
+      # CARTO_USERNAME: ${env:CARTO_USERNAME}
+      # CARTO_API_KEY: ${env:CARTO_API_KEY}
     events:
       - schedule: rate(2 minutes)
     timeout: 60
@@ -22,8 +22,8 @@ functions:
   servicelevel:
     handler: handler.servicelevel
     environment:
-      #CARTO_USERNAME: ${env:CARTO_USERNAME}
-      #CARTO_API_KEY: ${env:CARTO_API_KEY}
+      # CARTO_USERNAME: ${env:CARTO_USERNAME}
+      # CARTO_API_KEY: ${env:CARTO_API_KEY}
     events:
       - schedule: rate(5 minutes)
     timeout: 120
@@ -31,8 +31,8 @@ functions:
   intensitypois:
     handler: handler.intensitypois
     environment:
-      #CARTO_USERNAME: ${env:CARTO_USERNAME}
-      #CARTO_API_KEY: ${env:CARTO_API_KEY}
+      # CARTO_USERNAME: ${env:CARTO_USERNAME}
+      # CARTO_API_KEY: ${env:CARTO_API_KEY}
     events:
       - schedule: rate(5 minutes)
     timeout: 120
@@ -40,8 +40,8 @@ functions:
   intensitylines:
     handler: handler.intensitylines
     environment:
-      #CARTO_USERNAME: ${env:CARTO_USERNAME}
-      #CARTO_API_KEY: ${env:CARTO_API_KEY}
+      # CARTO_USERNAME: ${env:CARTO_USERNAME}
+      # CARTO_API_KEY: ${env:CARTO_API_KEY}
     events:
       - schedule: rate(5 minutes)
     timeout: 120
@@ -49,8 +49,8 @@ functions:
   trafficlightsacustw:
     handler: handler.trafficlightsacustw
     environment:
-      #CARTO_USERNAME: ${env:CARTO_USERNAME}
-      #CARTO_API_KEY: ${env:CARTO_API_KEY}
+      # CARTO_USERNAME: ${env:CARTO_USERNAME}
+      # CARTO_API_KEY: ${env:CARTO_API_KEY}
     events:
       - schedule: rate(15 days)
     timeout: 180
@@ -58,8 +58,8 @@ functions:
   trafficlightsred:
     handler: handler.trafficlightsred
     environment:
-      #CARTO_USERNAME: ${env:CARTO_USERNAME}
-      #CARTO_API_KEY: ${env:CARTO_API_KEY}
+      # CARTO_USERNAME: ${env:CARTO_USERNAME}
+      # CARTO_API_KEY: ${env:CARTO_API_KEY}
     events:
       - schedule: rate(15 days)
     timeout: 180
@@ -67,8 +67,8 @@ functions:
   cameras:
     handler: handler.cameras
     environment:
-      #CARTO_USERNAME: ${env:CARTO_USERNAME}
-      #CARTO_API_KEY: ${env:CARTO_API_KEY}
+      # CARTO_USERNAME: ${env:CARTO_USERNAME}
+      # CARTO_API_KEY: ${env:CARTO_API_KEY}
     events:
       - schedule: rate(2 hours)
     timeout: 180
@@ -76,9 +76,9 @@ functions:
   streetsgeocoder:
     handler: handler.streetsgeocoder
     environment:
-      #CARTO_USERNAME: ${env:CARTO_USERNAME}
-      #CARTO_API_KEY: ${env:CARTO_API_KEY}
-      #WAZE_GEOCODER_TOKEN: ${env:WAZE_GEOCODER_TOKEN}
+      # CARTO_USERNAME: ${env:CARTO_USERNAME}
+      # CARTO_API_KEY: ${env:CARTO_API_KEY}
+      WAZE_GEOCODER_TOKEN: ${env:WAZE_GEOCODER_TOKEN}
     events:
       - schedule: rate(5 minutes)
     timeout: 200
@@ -86,8 +86,17 @@ functions:
   pollutionIncidences:
     handler: handler.pollutionIncidences
     environment:
-      #CARTO_USERNAME: ${env:CARTO_USERNAME}
-      #CARTO_API_KEY: ${env:CARTO_API_KEY}
+      # CARTO_USERNAME: ${env:CARTO_USERNAME}
+      # CARTO_API_KEY: ${env:CARTO_API_KEY}
     events:
       - schedule: rate(30 minutes)
+    timeout: 60
+
+  pollutionScenarios:
+    handler: handler.pollutionScenarios
+    environment:
+      # CARTO_USERNAME: ${env:CARTO_USERNAME}
+      # CARTO_API_KEY: ${env:CARTO_API_KEY}
+    events:
+      - schedule: rate(2 minutes)
     timeout: 60

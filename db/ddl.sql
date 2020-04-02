@@ -142,3 +142,13 @@ CREATE TABLE madrid_traffic_tlights_red(
   created_at timestamp
 );
 SELECT cdb_cartodbfytable('madrid_traffic_tlights_red');
+
+-- POLUTION SCENARIOS LABELS
+CREATE TABLE madrid_traffic_pollution_scenarios(
+  codigo integer,
+  fecha timestamp,
+  descripcion text,
+  created_at timestamp
+);
+SELECT cdb_cartodbfytable('madrid_traffic_pollution_scenarios');
+CREATE INDEX madrid_traffic_pollution_scenarios_codigo_idx ON madrid_traffic_pollution_scenarios(codigo);
