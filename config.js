@@ -30,6 +30,10 @@ module.exports = {
     URL: 'http://informo.munimadrid.es/informo/tmadrid/incid_aytomadrid.xml',
     TABLE: process.env.POLLUTION_INCIDENCES_TABLE || 'madrid_traffic_pollution_incidences'
   },
+  POLLUTION_SCENARIOS: {
+    URL: 'http://informo.munimadrid.es/informo/tmadrid/permisoscont_aytomadrid.xml',
+    TABLE: process.env.POLLUTION_SCENARIOS_TABLE || 'madrid_traffic_pollution_scenarios'
+  },
   CARTO: {
     USERNAME: process.env.CARTO_USERNAME,
     API_KEY: process.env.CARTO_API_KEY
