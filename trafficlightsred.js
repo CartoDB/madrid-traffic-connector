@@ -17,16 +17,16 @@ class TrafficLightsRed {
   }
 
   buildSQL (data) {
-    return `BEGIN;
-              DELETE FROM ${config.TRAFF_LIGHTS_RED.TABLE};
-              INSERT INTO ${config.TRAFF_LIGHTS_RED.TABLE}
-                SELECT * FROM ${data};
-              UPDATE ${config.TRAFF_LIGHTS_RED.TABLE}
-                SET the_geom = ST_Transform(ST_SetSRID(the_geom, 25830), 4326),
-                    created_at = now();
-              DROP TABLE IF EXISTS ${data};
-            COMMIT;
-            `;
+    return `
+      BEGIN;
+      DELETE FROM ${config.TRAFF_LIGHTS_RED.TABLE};
+      INSERT INTO ${config.TRAFF_LIGHTS_RED.TABLE}
+        SELECT * FROM ${data};
+      UPDATE ${config.TRAFF_LIGHTS_RED.TABLE} SET
+        created_at = now();
+      DROP TABLE IF EXISTS ${data};
+      COMMIT;
+    `;
   }
 }
 
