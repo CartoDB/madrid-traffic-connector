@@ -57,8 +57,8 @@ class PollutionIncidences {
               const description = incd.descripcion_escenario[0];
               const measures = incd.medidas_escenario[0];
               const exceptions = incd.excepciones_escenario[0];
-              const start = incd.fh_inicio[0];
-              const finish = incd.fh_final[0];
+              const start = incd.fh_inicio[0] ? `'${incd.fh_inicio[0]}'`: "NULL";
+              const finish = incd.fh_final[0] ? `'${incd.fh_final[0]}'`: "NULL";
 
               let o = {
                 id: id,
@@ -106,8 +106,8 @@ class PollutionIncidences {
           '${d.description}',
           '${d.measures}',
           '${d.exceptions}',
-          '${d.start}',
-          '${d.finish}',
+          ${d.start},
+          ${d.finish},
           now()
         )
         ON CONFLICT DO NOTHING;`
