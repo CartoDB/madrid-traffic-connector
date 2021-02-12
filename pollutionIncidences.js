@@ -24,14 +24,9 @@ class PollutionIncidences {
           reject(e);
         } else {
           this.parse(body).then((data) => {
-            // Only perform the query when there is data available
-            if (data.length) {
-              store.query(this.buildSQL(data))
-              .then(d => resolve())
-              .catch(e => reject(e));
-            } else {
-              resolve();
-            }
+            store.query(this.buildSQL(data))
+            .then(d => resolve())
+            .catch(e => reject(e));
           }).catch(reason => {
             let e = new Error(`Error parsing KML: ${reason}`);
             console.error(e);
