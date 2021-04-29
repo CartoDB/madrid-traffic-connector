@@ -1,3 +1,7 @@
+/*
+REMEMBER: Replace `carto-username` with CARTO's account username
+*/
+
 --INCIDENCES
 CREATE TABLE madrid_traffic_incidences(
   id varchar(64) primary key,
@@ -6,11 +10,12 @@ CREATE TABLE madrid_traffic_incidences(
   description text,
   is_planned boolean,
   is_foreseen boolean,
-  start timestamp,
-  finish timestamp,
-  created_at timestamp
+  start timestamp without time zone,
+  finish timestamp without time zone,
+  created_at timestamp without time zone,
+  street text
 );
-SELECT cdb_cartodbfytable('madrid_traffic_incidences');
+SELECT cdb_cartodbfytable('carto-username', 'madrid_traffic_incidences');
 CREATE INDEX madrid_traffic_incidences_start_idx ON madrid_traffic_incidences(start);
 CREATE INDEX madrid_traffic_incidences_finish_idx ON madrid_traffic_incidences(finish);
 CREATE INDEX madrid_traffic_incidences_type_idx ON madrid_traffic_incidences(type);
@@ -21,9 +26,9 @@ CREATE TABLE madrid_traffic_servicelevels(
   id serial,
   the_geom geometry(LineString,4326),
   status varchar(16),
-  created_at timestamp
+  created_at timestamp without time zone
 );
-SELECT cdb_cartodbfytable('madrid_traffic_servicelevels');
+SELECT cdb_cartodbfytable('carto-username', 'madrid_traffic_servicelevels');
 
 --INTENSITY POIS
 CREATE TABLE madrid_traffic_intensity_pois(
@@ -34,7 +39,7 @@ CREATE TABLE madrid_traffic_intensity_pois(
   load integer,
   service_level integer,
   speed integer,
-  created_at timestamp
+  created_at timestamp without time zone
 );
 CREATE INDEX madrid_traffic_intensity_pois_idx ON madrid_traffic_intensity_pois(code);
 
@@ -43,9 +48,9 @@ CREATE TABLE madrid_traffic_intensity_lines(
   id serial,
   the_geom geometry(LineString,4326),
   intensity integer,
-  created_at timestamp
+  created_at timestamp without time zone
 );
-SELECT cdb_cartodbfytable('madrid_traffic_intensity_lines');
+SELECT cdb_cartodbfytable('carto-username', 'madrid_traffic_intensity_lines');
 
 --CAMERAS
 CREATE TABLE madrid_traffic_cameras(
@@ -53,42 +58,45 @@ CREATE TABLE madrid_traffic_cameras(
   name text,
   cod_id text,
   url text,
-  created_at timestamp
+  created_at timestamp without time zone
 );
-SELECT cdb_cartodbfytable('madrid_traffic_cameras');
+SELECT cdb_cartodbfytable('carto-username', 'madrid_traffic_cameras');
 
 --DISTRICTS
-CREATE OR REPLACE VIEW madrid_traffic_districts_pond_v As (
-  SELECT
-    cartodb_id, the_geom, the_geom_webmercator, name,
-
-    CASE
-      WHEN jm_pond = 0 THEN 'no_data'
-      WHEN jm_pond BETWEEN 0 AND 50 THEN 'low'
-      WHEN jm_pond BETWEEN 50 AND 100 THEN 'medium'
-      ELSE 'high'
-    END as pond
-  FROM (
-    SELECT
-      ds.cartodb_id, ds.the_geom, ds.nombre as name,
-      ds.the_geom_webmercator,
-      COALESCE(SUM(jm.level_pond), 0) as jm_pond
-    FROM madrid_historic_district ds
-    LEFT JOIN LATERAL (
-      SELECT
-        CASE
-          WHEN level = 1 OR level IS NULL THEN 1
-          WHEN level = 2 THEN 2
-          WHEN level = 3 THEN 4
-          ELSE 8
-        END as level_pond
-      FROM madrid_waze_data_jams_mv
-      WHERE ST_Intersects(ds.the_geom, the_geom)
-    ) jm ON TRUE
-    GROUP BY ds.cartodb_id
-  ) _q
-);
-GRANT SELECT ON madrid_traffic_districts_pond_v TO publicuser;
+-- LEGACY! INFORMO DOES NOT LONGER USE WAZE DATA
+-- CREATE OR REPLACE VIEW madrid_traffic_districts_pond_v As (
+--   SELECT
+--     cartodb_id,
+--     the_geom,
+--     the_geom_webmercator,
+--     name,
+--     CASE
+--       WHEN jm_pond = 0 THEN 'no_data'
+--       WHEN jm_pond BETWEEN 0 AND 50 THEN 'low'
+--       WHEN jm_pond BETWEEN 50 AND 100 THEN 'medium'
+--       ELSE 'high'
+--     END as pond
+--   FROM (
+--     SELECT
+--       ds.cartodb_id, ds.the_geom, ds.nombre as name,
+--       ds.the_geom_webmercator,
+--       COALESCE(SUM(jm.level_pond), 0) as jm_pond
+--     FROM madrid_historic_district ds
+--     LEFT JOIN LATERAL (
+--       SELECT
+--         CASE
+--           WHEN level = 1 OR level IS NULL THEN 1
+--           WHEN level = 2 THEN 2
+--           WHEN level = 3 THEN 4
+--           ELSE 8
+--         END as level_pond
+--       FROM madrid_waze_data_jams_mv
+--       WHERE ST_Intersects(ds.the_geom, the_geom)
+--     ) jm ON TRUE
+--     GROUP BY ds.cartodb_id
+--   ) _q
+-- );
+-- GRANT SELECT ON madrid_traffic_districts_pond_v TO publicuser;
 
 -- POLLUTION INCIDENCES
 CREATE TABLE madrid_traffic_pollution_incidences(
@@ -97,11 +105,11 @@ CREATE TABLE madrid_traffic_pollution_incidences(
   description text,
   measures text,
   exceptions text,
-  start timestamp,
-  finish timestamp,
-  created_at timestamp
+  start timestamp without time zone,
+  finish timestamp without time zone,
+  created_at timestamp without time zone
 );
-SELECT cdb_cartodbfytable('madrid_traffic_pollution_incidences');
+SELECT cdb_cartodbfytable('carto-username', 'madrid_traffic_pollution_incidences');
 CREATE INDEX madrid_traffic_pollution_incidences_start_idx ON madrid_traffic_pollution_incidences(start);
 CREATE INDEX madrid_traffic_pollution_incidences_finish_idx ON madrid_traffic_pollution_incidences(finish);
 CREATE INDEX madrid_traffic_pollution_incidences_level_idx ON madrid_traffic_pollution_incidences(level);
@@ -109,17 +117,17 @@ CREATE INDEX madrid_traffic_pollution_incidences_level_idx ON madrid_traffic_pol
 -- TLIGHTS ACUSTW
 CREATE TABLE madrid_traffic_tlights_acustw(
   tipo_elem text,
-  distrito integer,
-  id integer,
-  id_cruce integer,
+  distrito double precision,
+  id double precision,
+  id_cruce double precision,
   fecha_inst text,
   utm_x double precision,
   utm_y double precision,
   latitud double precision,
   longitud double precision,
-  created_at timestamp
+  created_at timestamp without time zone
 );
-SELECT cdb_cartodbfytable('madrid_traffic_tlights_acustw');
+SELECT cdb_cartodbfytable('carto-username', 'madrid_traffic_tlights_acustw');
 
 -- TLIGHTS RED
 CREATE TABLE madrid_traffic_tlights_red(
@@ -129,16 +137,16 @@ CREATE TABLE madrid_traffic_tlights_red(
   distrito text,
   id_cruce integer,
   fecha_denu text,
-  created_at timestamp
+  created_at timestamp without time zone
 );
-SELECT cdb_cartodbfytable('madrid_traffic_tlights_red');
+SELECT cdb_cartodbfytable('carto-username', 'madrid_traffic_tlights_red');
 
 -- POLUTION SCENARIOS LABELS
 CREATE TABLE madrid_traffic_pollution_scenarios(
   codigo integer,
-  fecha timestamp,
+  fecha timestamp without time zone,
   descripcion text,
-  created_at timestamp
+  created_at timestamp without time zone
 );
-SELECT cdb_cartodbfytable('madrid_traffic_pollution_scenarios');
+SELECT cdb_cartodbfytable('carto-username', 'madrid_traffic_pollution_scenarios');
 CREATE INDEX madrid_traffic_pollution_scenarios_codigo_idx ON madrid_traffic_pollution_scenarios(codigo);
