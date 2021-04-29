@@ -1,16 +1,16 @@
 module.exports = {
   INCIDENCES: {
-    URL: 'http://informo.munimadrid.es/informo/tmadrid/incid_aytomadrid.xml',
+    URL: 'http://informo.madrid.es/informo/tmadrid/incid_aytomadrid.xml',
     TABLE: process.env.INCIDENCES_TABLE || 'madrid_traffic_incidences'
   },
   SERVICE_LEVEL: {
-    URL: 'http://informo.munimadrid.es/informo/tmadrid/TRAMOS.kml',
+    URL: 'http://informo.madrid.es/informo/tmadrid/TRAMOS.kml',
     TABLE: process.env.SERVICE_LEVEL_TABLE || 'madrid_traffic_servicelevels'
   },
   INTENSITY: {
-    POIS_URL: 'http://informo.munimadrid.es/informo/tmadrid/pm.xml',
+    POIS_URL: 'http://informo.madrid.es/informo/tmadrid/pm.xml',
     POIS_TABLE: process.env.INTENSITY_POIS_TABLE || 'madrid_traffic_intensity_pois',
-    LINES_URL: 'http://informo.munimadrid.es/informo/tmadrid/INTENSIDADES.kml',
+    LINES_URL: 'http://informo.madrid.es/informo/tmadrid/INTENSIDADES.kml',
     LINES_TABLE: process.env.INTENSITY_LINES_TABLE || 'madrid_traffic_intensity_lines'
   },
   TRAFF_LIGHTS_ACUSTW: {
@@ -22,16 +22,16 @@ module.exports = {
     TABLE: process.env.TRAFF_LIGHTS_RED_TABLE || 'madrid_traffic_tlights_red'
   },
   CAMERAS: {
-    URL: 'http://informo.munimadrid.es/informo/tmadrid/CCTV.kml',
+    URL: 'http://informo.madrid.es/informo/tmadrid/CCTV.kml',
     TABLE: process.env.CAMERAS_TABLE || 'madrid_traffic_cameras',
     URL_IMAGES: '/cameras/'
   },
   POLLUTION: {
-    URL: 'http://informo.munimadrid.es/informo/tmadrid/incid_aytomadrid.xml',
+    URL: 'http://informo.madrid.es/informo/tmadrid/incid_aytomadrid.xml',
     TABLE: process.env.POLLUTION_INCIDENCES_TABLE || 'madrid_traffic_pollution_incidences'
   },
   POLLUTION_SCENARIOS: {
-    URL: 'http://informo.munimadrid.es/informo/tmadrid/permisoscont_aytomadrid.xml',
+    URL: 'http://informo.madrid.es/informo/tmadrid/permisoscont_aytomadrid.xml',
     TABLE: process.env.POLLUTION_SCENARIOS_TABLE || 'madrid_traffic_pollution_scenarios'
   },
   CARTO: {
