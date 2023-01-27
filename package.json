@@ -25,6 +25,6 @@
     "xml2js": "^0.4.19"
   },
   "devDependencies": {
-    "serverless": "^1.67.0"
+    "serverless": "^3.27.0"
   }
 }
